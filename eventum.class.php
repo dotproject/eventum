@@ -77,7 +77,7 @@
 			$this->_db = NewADOConnection(APP_SQL_DBTYPE);
 			if (! $this->_db)
 				return false;
-			$this->_db->Connect(APP_SQL_DBHOST, APP_SQL_DBUSER, APP_SQL_DBPASS, APP_SQL_DBNAME);
+			$this->_db->NConnect(APP_SQL_DBHOST, APP_SQL_DBUSER, APP_SQL_DBPASS, APP_SQL_DBNAME);
 			$this->_prefix = APP_TABLE_PREFIX;
 			$this->_url = APP_BASE_URL;
 			return true;
