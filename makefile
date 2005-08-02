@@ -29,6 +29,7 @@ DISTFILES = addedit.php \
 	README \
 	redirect.php \
 	setup.php \
+	tasks_tab.todo.issues.php \
 	view_detail.php \
 	vw_by_contract.php \
 	vw_expired_contract.php \
@@ -37,10 +38,10 @@ DISTFILES = addedit.php \
 all: $(DISTTAR) $(DISTZIP)
 
 $(DISTTAR):	$(EVTAR) $(EVZIP) $(DISTFILES)
-	tar cvzf $(DISTTAR) $(EVTAR) $(EVZIP) $(DISTFILES)
+	cd ..; tar cvzf eventum/$(DISTTAR) eventum/$(EVTAR) eventum/$(EVZIP) $(DISTFILES:%=eventum/%)
 
 $(DISTZIP):	$(EVTAR) $(EVZIP) $(DISTFILES)
-	zip $(DISTZIP) $(EVTAR) $(EVZIP) $(DISTFILES)
+	cd ..; zip eventum/$(DISTZIP) eventum/$(EVTAR) eventum/$(EVZIP) $(DISTFILES:%=eventum/%)
 
 $(EVTAR):	$(EVFILES:%=evlink/%)
 	cd evlink; tar cvzf ../$(EVTAR) $(EVFILES)
