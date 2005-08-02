@@ -5,7 +5,7 @@ VERSION = 1.1.3
 EVTAR = evlink.tar.gz
 EVZIP = evlink.zip
 DISTTAR = $(PACKAGE)_$(VERSION).tar.gz
-DISTZIP = $(PACKAGE)_$(VERSION).zip
+DISTZIP = $(PACKAGE)_$(subst .,_,$(VERSION)).zip
 
 EVFILES = customer/dotproject/customer_lookup.php \
 	customer/dotproject/d_create.php \
