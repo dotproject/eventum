@@ -107,7 +107,8 @@ require_once $dproot . \'/includes/config.php\';
 	<form method="POST" id="eventum_configure">
 	<br />
 		<b><?php echo $AppUI->_('Eventum Installation Directory');?>:</b>
-		<input type="text" class="text" name="eventum_directory" size="50" value="<?php echo $eventum_directory; ?>"/>
+		<input type="text" class="text" name="eventum_directory" size="50" value="<?php echo $eventum_directory; ?>"
+		onchange="applyConfig();" />
 	<br />
 		<b><?php echo $AppUI->_('Enable Customer Support Levels'); ?>:</b>
 		<input type="checkbox" name="eventum_supplvl_enabled" value="1" <?php echo $support_enabled; ?> 
