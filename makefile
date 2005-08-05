@@ -1,7 +1,7 @@
 # Make a release
 
 PACKAGE = dp_evolution
-VERSION = 1.1.3
+VERSION = 1.1.4
 EVTAR = evlink.tar.gz
 EVZIP = evlink.zip
 DISTTAR = $(PACKAGE)_$(VERSION).tar.gz

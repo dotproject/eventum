@@ -1,5 +1,8 @@
 <?php
 
+require_once $AppUI->getSystemClass('dp');
+require_once $AppUI->getSystemClass('libmail');
+
 	/*
 	 * Eventum Integration Module
 	 */
@@ -131,7 +134,7 @@
 			    if ($row['prj_customer_backend'] != 'class.dotproject.php')
 			      $evid = false;
 			    else
-			      $evid = array($ev_prj_id, $row['prj_title']);
+			      $evid = array($ev_prj_id => $row['prj_title']);
 			  } else {
 			    $evid = false;
 			  }

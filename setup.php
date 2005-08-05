@@ -10,7 +10,7 @@
 // MODULE CONFIGURATION DEFINITION
 $config = array();
 $config['mod_name'] = 'Eventum';
-$config['mod_version'] = '1.1.3';
+$config['mod_version'] = '1.1.4';
 $config['mod_directory'] = 'eventum';
 $config['mod_setup_class'] = 'CSetupEventum';
 $config['mod_type'] = 'addon';
@@ -128,6 +128,7 @@ class CSetupEventum {
 			  return $err;
 			
 		case '1.1.2':
+		case '1.1.3':
 			break;
 		}
 	}

@@ -41,7 +41,8 @@ if (! $evprj = $evcfg->getLinkedProject($project_id)) {
   }
   echo '<a href="index.php?m=eventum&a=redirect&suppressHeaders=1">'.$AppUI->_('Eventum') . '</a>';
 
-  list ($prj_id, $prj_name) = each ($evprj);
+  reset($evprj);
+  list ($prj_id, $prj_name) = each($evprj);
   // 
   $issue_list = $evcfg->getopenRequests($prj_id);
 }

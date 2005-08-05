@@ -339,7 +339,7 @@
 			$sql = 'INSERT INTO event_queue ( queue_owner, queue_start, 
 			  queue_callback, queue_data, queue_repeat_interval, queue_repeat_count,
 			  queue_module, queue_type, queue_origin_id, queue_module_type 
-			) VALUES ( \'0\', \'0\', \'eventum::notifyIssue\', \'' . serialize($data) . '\',
+			) VALUES ( \'0\', \'0\', \'ceventum::notifyIssue\', \'' . serialize($data) . '\',
 			  \'0\', \'1\', \'eventum\', \'notify\', \'0\', \'module\')';
 			$this->db->Execute($sql);
 			
