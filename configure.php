@@ -127,7 +127,7 @@ require_once $dproot . \'/includes/config.php\';
 	<table>
 	<th><?php echo $AppUI->_('Support Level'); ?></th>
 	<th><?php echo $AppUI->_('Min Response'); ?></th>
-	<th><?php echo $AppUI->_('Max Response'); ?></th><th>Change</th>
+	<th><?php echo $AppUI->_('Max Response'); ?></th><th><?php echo $AppUI->_('Change'); ?></th>
 <?php
 	while ($row = $q->FetchRow())
 	{
