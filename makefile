@@ -1,7 +1,7 @@
 # Make a release
 
-PACKAGE = dp_evolution
-VERSION = 1.1.4
+PACKAGE = dp_eventum
+VERSION = 1.1.5
 EVTAR = evlink.tar.gz
 EVZIP = evlink.zip
 DISTTAR = $(PACKAGE)_$(VERSION).tar.gz
@@ -24,6 +24,8 @@ DISTFILES = addedit.php \
 	do_eventum_supplvl_add.php \
 	do_link.php \
 	eventum.class.php \
+	index.php \
+	link.php \
 	locales/en.inc \
 	projects_tab.issues.php \
 	README \
