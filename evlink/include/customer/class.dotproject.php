@@ -45,7 +45,7 @@
 		function getSupportLevelID($cust_id)
 		{
 			// return support level id of supplied customer
-			$sql = "SELECT * FROM companies_contracts WHERE company_id = ".$cust_id;
+			$sql = "SELECT * FROM companies_contracts WHERE company_id = '$cust_id'";
 			$rs = $this->db->Execute($sql);
 	
 			if ($rs && $row = $rs->FetchRow())
@@ -62,7 +62,7 @@
 
 			foreach($support_level_id as $lvl)
 			{
-				$sql = "SELECT * FROM companies_contracts WHERE support_level = ".$lvl;
+				$sql = "SELECT * FROM companies_contracts WHERE support_level = '$lvl'";
 				$rs = $this->db->Execute($sql);
 				for ($rs; $row = $rs->FetchRow();)
 				{
@@ -94,7 +94,7 @@
 
 		function getMinimumResponseTime($customer_id)
 		{
-			$sql = "SELECT support_minresponse_hrs FROM companies_contracts LEFT JOIN companies_support_levels ON companies_contracts.support_level = companies_support_levels.support_level_id WHERE companies_contracts.company_id = ".$customer_id;
+			$sql = "SELECT support_minresponse_hrs FROM companies_contracts LEFT JOIN companies_support_levels ON companies_contracts.support_level = companies_support_levels.support_level_id WHERE companies_contracts.company_id = '$customer_id'";
 			$rs = $this->db->Execute($sql);
 			$row = $rs->FetchRow();
 			$response_seconds = intval($row["support_minresponse_hrs"]) * 60 * 60;
@@ -103,7 +103,7 @@
 
 		function getMaximumFirstResponseTime($customer_id)
 		{
-			$sql = "SELECT support_maxresponse_hrs FROM companies_contracts LEFT JOIN companies_support_levels ON companies_contracts.support_level = companies_support_levels.support_level_id WHERE companies_contracts.company_id = ".$customer_id;
+			$sql = "SELECT support_maxresponse_hrs FROM companies_contracts LEFT JOIN companies_support_levels ON companies_contracts.support_level = companies_support_levels.support_level_id WHERE companies_contracts.company_id = '$customer_id'";
 			$rs = $this->db->Execute($sql);
 			//echo $this->db->ErrorMsg();
 			$row = $rs->FetchRow();
@@ -117,7 +117,7 @@
 
 		function getContractStartDate($customer_id)
 		{
-			$sql = "SELECT contract_start_date FROM companies_contracts WHERE company_id = ".$customer_id;
+			$sql = "SELECT contract_start_date FROM companies_contracts WHERE company_id = '$customer_id'";
 			$rs = $this->db->Execute($sql);
 			if ($rs && $row = $rs->FetchRow())
 			  return $row["contract_start_date"];	
@@ -127,7 +127,7 @@
 
 		function getContractEndDate($customer_id)
 		{
-			$sql = "SELECT contract_finish_date FROM companies_contracts WHERE company_id = ".$customer_id;
+			$sql = "SELECT contract_finish_date FROM companies_contracts WHERE company_id = '$customer_id'";
 			if (!$rs = $this->db->Execute($sql)) echo $this->db->ErrorMsg();
 			$row = $rs->FetchRow();
 			return $row["contract_finish_date"];
@@ -135,7 +135,7 @@
 
 		function getContractStatus($customer_id)
 		{
-			$sql = "SELECT * FROM companies_contracts WHERE company_id = ".$customer_id;
+			$sql = "SELECT * FROM companies_contracts WHERE company_id = '$customer_id'";
 			$rs = $this->db->Execute($sql);
 			$row = $rs->FetchRow();
 
@@ -160,12 +160,12 @@
 
     		function getDetails($customer_id)
    		{
-			$sql = "SELECT * FROM companies LEFT JOIN companies_contracts ON companies.company_id = companies_contracts.company_id WHERE companies.company_id = ".$customer_id;
+			$sql = 'SELECT * FROM companies LEFT JOIN companies_contracts ON companies.company_id = companies_contracts.company_id WHERE companies.company_id = \''.$customer_id.'\'';
 			$rs = $this->db->Execute($sql);
 
 			$row = $rs->FetchRow();	
 
-			$sql = "SELECT * FROM contacts WHERE contact_company = ".$customer_id;
+			$sql = 'SELECT * FROM contacts WHERE contact_company = \''.$customer_id.'\'';
 			$c_rs = $this->db->Execute($sql);
 			$contact_array = array();
 			while ($r = $c_rs->FetchRow())
@@ -209,7 +209,7 @@
 		{
 			$assoc = array();
 
-			$sql = "SELECT * FROM contacts WHERE contact_company = ".$customer_id;
+			$sql = 'SELECT * FROM contacts WHERE contact_company = \''.$customer_id . '\'';
 			$rs = $this->db->Execute($sql);
 			for ($rs; $row = $rs->FetchRow();)
 			{
@@ -235,7 +235,7 @@
 		
 		function getTitle($customer_id)
 		{
-			$sql = "SELECT company_name FROM companies WHERE company_id = ".$customer_id;
+			$sql = "SELECT company_name FROM companies WHERE company_id = '$customer_id'";
 			$rs = $this->db->Execute($sql);
 			$first_row = $rs->FetchRow();
 			return $first_row["company_name"];
@@ -247,9 +247,9 @@
 
 			foreach ($customer_ids as $cid)
 			{
-				$sql = "SELECT * FROM projects LEFT JOIN companies ON projects.project_id = companies.company_id WHERE company_id = $cid AND project_id = $prj_id";
+				$sql = "SELECT * FROM projects LEFT JOIN companies ON projects.project_id = companies.company_id WHERE company_id = '$cid' AND project_id = '$prj_id'";
 				$rs = $this->db->Execute($sql);
-				if ($rs->RecordCount() > 0)
+				if ($rs && $rs->RecordCount() > 0)
 				{
 					$row = $rs->FetchRow();
 					$cust_arr[$row["company_id"]] = $row["company_name"];
@@ -262,7 +262,7 @@
 		{
 			$cont_ar = Array();
 			
-			$sql = "SELECT * FROM contacts WHERE contact_id = ".$contact_id;
+			$sql = "SELECT * FROM contacts WHERE contact_id = '$contact_id'";
 
 			$rs = $this->db->Execute($sql);
 			$row = $rs->FetchRow();
@@ -284,7 +284,7 @@
 					if (count($ids) == 0) return array();					
 					break;
 				case "customer_id":
-					$sql = "SELECT company_id FROM companies WHERE company_id = ".$value;
+					$sql = "SELECT company_id FROM companies WHERE company_id = '$value'";
 					$rs = $this->db->Execute($sql);
 					if ($rs->RecordCount() > 0) {
 						$ids = Array($value);
