@@ -153,9 +153,11 @@ require_once $AppUI->getSystemClass('libmail');
 		{
 			$dpq = new DBQuery;
 			$evq = new DBQuery($this->_prefix, $this->_db);
-			$dpq->addTable('project_eventum_projects');
-			$dpq->addQuery('eventum_id');
-			$dpq->addWhere('dotproject_id != \'' . $project_id . '\'');
+			$dpq->addTable('project_eventum_projects', 'ev');
+			$dpq->addTable('projects', 'prj');
+			$dpq->addQuery('ev.eventum_id');
+			$dpq->addWhere('ev.dotproject_id = prj.project_id');
+			$dpq->addWhere('ev.dotproject_id != \'' . $project_id . '\'');
 			$project_list = $dpq->loadColumn();
 
 			$evq->addTable('project');
@@ -174,6 +176,12 @@ require_once $AppUI->getSystemClass('libmail');
 		function linkProject($dp_id, $ev_id)
 		{
 		 	$dpq = new DBQuery;
+			// First pass, remove any links that exist 
+			$dpq->setDelete('project_eventum_projects');
+			$dpq->addWhere('eventum_id = \'' . $ev_id . '\' or dotproject_id = \'' . $dp_id . '\'');
+			$dpq->exec();
+			$dpq->clear();
+			// Now add the new link.
 			$dpq->addTable('project_eventum_projects');
 			$dpq->addInsert('eventum_id', $ev_id);
 			$dpq->addInsert('dotproject_id', $dp_id);
