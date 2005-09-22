@@ -194,7 +194,7 @@ require_once $AppUI->getSystemClass('libmail');
 		{
 		 	$dpq = new DBQuery;
 			$dpq->setDelete('project_eventum_projects');
-			$dpq->addWhere('dotproject_id', $dp_id);
+			$dpq->addWhere('dotproject_id = \'' . $dp_id . '\'');
 			$dpq->exec();
 			$dpq->clear();
 			return $dpq->_db->ErrorMsg();
