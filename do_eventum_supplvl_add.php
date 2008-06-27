@@ -17,7 +17,7 @@
 		if (substr($evdir, -1) == DIRECTORY_SEPARATOR)
 		  $evdir = substr($evdir, 0, -1);
 		if ($evdir && $evdir != $current_dir) {
-		  $evcfile = $evdir . DIRECTORY_SEPARATOR . 'config.inc.php';
+		  $evcfile = $evdir . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.inc.php';
 		  if ( ! file_exists($evcfile)) {
 		  	// Error!
 			$AppUI->setMsg('Eventum directory invalid, no changes saved', UI_MSG_ALERT);

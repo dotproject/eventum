@@ -25,11 +25,11 @@
 // | Authors: João Prado Maia <jpm@mysql.com>                             |
 // +----------------------------------------------------------------------+
 //
-// @(#) $Id$
+// @(#) $Id: customer_lookup.php,v 1.1 2005/08/02 00:42:51 ajdonnison Exp $
 //
-include_once("../../config.inc.php");
-include_once(APP_INC_PATH . "db_access.php");
-include_once(APP_INC_PATH . "class.template.php");
+require_once(dirname(__FILE__).'/../../init.php');
+require_once(APP_INC_PATH . "db_access.php");
+require_once(APP_INC_PATH . "class.template.php");
 
 $tpl = new Template_API();
 $tpl->setTemplate("customer/dotproject/customer_lookup.tpl.html");
@@ -46,7 +46,7 @@ if ($role_id < User::getRoleID('Developer')) {
 }
 
 if (@$HTTP_POST_VARS['cat'] == 'lookup') {
-    $tpl->assign("results", Customer::lookup($prj_id, $HTTP_POST_VARS['field'], $HTTP_POST_VARS['value']));
+    $tpl->assign("results", Customer::lookup($prj_id, $POST['field'], $POST['value']));
 }
 
 $tpl->displayTemplate();

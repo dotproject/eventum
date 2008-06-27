@@ -24,6 +24,7 @@ global $baseDir, $baseUrl, $dPconfig;
 $baseDir = $dproot;
 $baseUrl = \'' . $baseUrl . '\';
 $dPconfig = array();
+define(\'DP_BASE_DIR\','.$baseDir.');
 require_once $dproot . \'/includes/config.php\';
 ?>';
 
